@@ -5,11 +5,6 @@
     - name: update apt cache
       apt: update-cache=yes cache_valid_time=3600
 
-    - name: install apache
-      apt: name=apache2 state=present
-
-    - name: install mysql
-      apt: name=mysql-server state=present
-
-    - name: install php
-      apt: name=php5 state=present
+    - include: tasks/apache.yml
+    - include: tasks/mysql.yml
+    - include: tasks/php.yml
