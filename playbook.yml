@@ -1,6 +1,11 @@
 ---
 - hosts: all
   sudo: true
+  vars:
+    document_root: /vagrant
+  handlers:
+    - name: reload apache
+      service: name=apache2 state=reloaded
   tasks:
     - name: update apt cache
       apt: update-cache=yes cache_valid_time=3600
