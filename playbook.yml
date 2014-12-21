@@ -3,13 +3,9 @@
   sudo: true
   vars:
     document_root: /vagrant
-  handlers:
-    - name: reload apache
-      service: name=apache2 state=reloaded
-  tasks:
+  pre_tasks:
     - name: update apt cache
       apt: update-cache=yes cache_valid_time=3600
-
-    - include: tasks/apache.yml
-    - include: tasks/mysql.yml
-    - include: tasks/php.yml
+  roles:
+    - webserver
+    - database
